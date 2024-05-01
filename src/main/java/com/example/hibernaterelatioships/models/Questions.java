@@ -6,18 +6,19 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name = "departments")
+@Table(name = "questions")
 @Data
-public class Department {
+public class Questions {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long deptId;
+    Long qId;
 
-    String deptName;
+    String qName;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "department")
-    List<Employee> employees;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
+    List<Answers> answers;
 
+    
     /* @JoinColumn(name = "dept_Id")  */   // No matter whether you name in lowercase or in uppercase , it will always use lowercase only.
 //    List<Employee> employees;
 }
